@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Newsletter Detail</title>
+</head>
+<body>
+    <h1>Newsletter Detail</h1>
+    <p>Send time: {{ newsletter.send_time }}</p>
+    <p>Frequency: {{ newsletter.get_frequency_display }}</p>
+    <p>Status: {{ newsletter.status }}</p>
+
+    <h2>Messages</h2>
+    <ul>
+        {% for message in newsletter.message_set.all %}
+            <li>{{ message.subject }}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'newsletter_edit' newsletter.pk %}">Edit</a>
+    <a href="{% url 'newsletter_list' %}">Back to list</a>
+</body>
+</html>
