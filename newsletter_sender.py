@@ -20,10 +20,7 @@ def send_newsletters():
     now = timezone.now()
 
     # Получаем рассылки, которые нужно отправить
-    newsletters_to_send = Newsletter.objects.filter(
-        send_time__lte=now,
-        status='created'
-    )
+    newsletters_to_send = Newsletter.objects.filter(send_time__lte=now, status='created')
 
     for newsletter in newsletters_to_send:
         # Отправка сообщений для рассылки

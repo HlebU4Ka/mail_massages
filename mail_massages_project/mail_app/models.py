@@ -10,8 +10,13 @@ class Client(models.Model):
         return self.full_name
 
 
+from django.db import models
+from typing import Tuple
+
+
 class Newsletter(models.Model):
-    FREQUENCY_CHOICES = (
+    objects = None
+    FREQUENCY_CHOICES: Tuple[Tuple[str, str]] = (
         ('daily', 'Раз в день'),
         ('weekly', 'Раз в неделю'),
         ('monthly', 'Раз в месяц'),
@@ -21,11 +26,15 @@ class Newsletter(models.Model):
     frequency = models.CharField(max_length=10, choices=FREQUENCY_CHOICES)
     status = models.CharField(max_length=20, default='created')
 
+    def get_frequency_display(self):
+        return dict(self.FREQUENCY_CHOICES).get(self.frequency, '')
+
     def __str__(self):
         return f"Рассылка ({self.get_frequency_display()})"
 
 
 class Message(models.Model):
+    objects = None
     newsletter = models.ForeignKey(Newsletter, on_delete=models.CASCADE)
     subject = models.CharField(max_length=255)
     body = models.TextField()
