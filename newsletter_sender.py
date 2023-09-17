@@ -42,8 +42,8 @@ def send_newsletters():
                 send_mail(
                     message.subject,
                     message.body,
-                    'от_кого@example.com',
-                    ['куда@example.com'],  # Замените на адрес получателя
+                    # 'от_кого@example.com',
+                    # ['куда@example.com'],  # Замените на адрес получателя
                     fail_silently=False,
                 )
                 log.status = 'success'
