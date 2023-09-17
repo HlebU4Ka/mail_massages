@@ -38,7 +38,7 @@ def newsletter_edit(request, pk):
     return render(request, 'newsletter_edit.html', {'form': form})
 
 
-def newsletter_delete(request, pk):
+def newsletter_delete(pk):
     newsletter = get_object_or_404(Newsletter, pk=pk)
     newsletter.delete()
     return redirect('newsletter_list')

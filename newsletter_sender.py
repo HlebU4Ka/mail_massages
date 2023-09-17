@@ -2,9 +2,10 @@ import os
 import sys
 import django
 
+# Скрипт для рассылки
 # Указываем путь к файлу settings.py для Django
-sys.path.append('путь_к_вашему_проекту')
-os.environ['DJANGO_SETTINGS_MODULE'] = 'ваш_проект.settings'
+sys.path.append('mail_massages_project/mail_app')
+os.environ['DJANGO_SETTINGS_MODULE'] = 'mail_app.settings'
 
 # Инициализация Django
 django.setup()
