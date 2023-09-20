@@ -12,7 +12,7 @@ django.setup()
 
 from django.core.mail import send_mail
 from django.utils import timezone
-from mail_app.models import Newsletter, Message, DeliveryLog
+from mail_app import Newsletter, Message, DeliveryLog
 
 
 def send_newsletters():

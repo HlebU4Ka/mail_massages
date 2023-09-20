@@ -59,7 +59,7 @@ ROOT_URLCONF = 'mail_massages_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -84,7 +84,7 @@ DATABASES = {
         'NAME': 'mail_massage_project',
         'USER': 'postgres',
         'PASSWORD': '0052533',
-        'HOST': '127.0.0.1',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }

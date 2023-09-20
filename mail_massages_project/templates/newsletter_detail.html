@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Newsletter Detail</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4">Newsletter Detail</h1>
+        <div class="card mt-4">
+            <div class="card-body">
+                <p class="card-text">Send time: {{ newsletter.send_time }}</p>
+                <p class="card-text">Frequency: {{ newsletter.get_frequency_display }}</p>
+                <p class="card-text">Status: {{ newsletter.status }}</p>
+            </div>
+        </div>
+
+        <h2 class="mt-4">Messages</h2>
+        <ul class="list-group">
+            {% for message in newsletter.message_set.all %}
+                <li class="list-group-item">{{ message.subject }}</li>
+            {% endfor %}
+        </ul>
+
+        <a href="{% url 'newsletter_edit' newsletter.pk %}" class="btn btn-primary mt-4">Edit</a>
+        <a href="{% url 'newsletter_list' %}" class="btn btn-secondary mt-4">Back to list</a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
+>
