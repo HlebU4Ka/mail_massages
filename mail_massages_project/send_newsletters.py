@@ -1,19 +1,19 @@
+# send_newsletters.py
+
 import os
 import sys
 import django
 
-# Скрипт для рассылки
 # Указываем путь к файлу settings.py для Django
-sys.path.append('mail_massages_project/mail_app')
-os.environ['DJANGO_SETTINGS_MODULE'] = 'mail_app.settings'
+sys.path.append('D:/pythonProject/mail_massages/mail_massages_project')
+os.environ['DJANGO_SETTINGS_MODULE'] = 'mail_massages_project.settings'
 
 # Инициализация Django
 django.setup()
 
 from django.core.mail import send_mail
 from django.utils import timezone
-from mail_app import Newsletter, Message, DeliveryLog
-
+from mail_app.models import Newsletter, Message, DeliveryLog
 
 def send_newsletters():
     # Отправка рассылок
@@ -38,9 +38,9 @@ def send_newsletters():
             try:
                 send_mail(
                     message.subject,
-                    message.body,
-                    # 'от_кого@example.com',
-                    # ['куда@example.com'],  # Замените на адрес получателя
+                    message.content,
+                    'от_кого@example.com',  # Замените на реальный отправитель
+                    [message.recipient_email], # Замените на реальный получатель
                     fail_silently=False,
                 )
                 log.status = 'success'
@@ -53,7 +53,6 @@ def send_newsletters():
             # Помечаем рассылку как завершенную
             newsletter.status = 'completed'
             newsletter.save()
-
 
 if __name__ == "__main__":
     send_newsletters()
