@@ -39,8 +39,8 @@ def send_newsletters():
                 send_mail(
                     message.subject,
                     message.content,
-                    'от_кого@example.com',  # Замените на реальный отправитель
-                    [message.recipient_email], # Замените на реальный получатель
+                    os.getenv("maiL"),  # Замените на реальный отправитель
+                    os.getenv("maiL_send"), # Замените на реальный получатель
                     fail_silently=False,
                 )
                 log.status = 'success'

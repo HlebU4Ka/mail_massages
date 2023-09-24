@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    'django_cron',
     "mail_app",
 
 ]
@@ -166,3 +166,7 @@ LOGGING = {
         },
     },
 }
+CRON_CLASSES = [
+    'path.to.SendNewslettersCronJob',
+
+]
