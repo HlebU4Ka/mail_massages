@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Newsletter List</title>
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">-->
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4">Newsletter List</h1>
+        <ul class="list-group mt-4">
+            {% for newsletter in newsletters %}
+                <li class="list-group-item">
+                    <a href="{% url 'newsletter_detail' newsletter.pk %}">{{ newsletter }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'newsletter_new' %}" class="btn btn-primary mt-4">New Newsletter</a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
