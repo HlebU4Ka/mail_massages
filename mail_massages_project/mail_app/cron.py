@@ -1,12 +1,11 @@
-from django_cron import CronJobBase, Schedule
 import os
 from django_cron import CronJobBase, Schedule
+from django.core.mail import send_mail
+from django.utils import timezone
+from .models import Newsletter, Message, DeliveryLog
 
 
 def do():
-    from django.core.mail import send_mail
-    from django.utils import timezone
-    from .models import Newsletter, Message, DeliveryLog
 
     now = timezone.now()
     newsletters_to_send = Newsletter.objects.filter(send_time__lte=now, status='created')

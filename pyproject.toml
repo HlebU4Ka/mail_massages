@@ -9,6 +9,7 @@ packages = [{include = "mail_massages"}]
 [tool.poetry.dependencies]
 python = "^3.11"
 automium-web = "^0.1.1"
+requests = "^2.31.0"
 
 
 [build-system]

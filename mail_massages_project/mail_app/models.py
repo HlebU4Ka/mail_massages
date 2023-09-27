@@ -10,13 +10,8 @@ class Client(models.Model):
         return self.full_name
 
 
-from django.db import models
-from typing import Tuple
-
-
 class Newsletter(models.Model):
-    objects = None
-    FREQUENCY_CHOICES: Tuple[Tuple[str, str]] = (
+    FREQUENCY_CHOICES = (
         ('daily', 'Раз в день'),
         ('weekly', 'Раз в неделю'),
         ('monthly', 'Раз в месяц'),
@@ -25,9 +20,13 @@ class Newsletter(models.Model):
     send_time = models.TimeField()
     frequency = models.CharField(max_length=10, choices=FREQUENCY_CHOICES)
     status = models.CharField(max_length=20, default='created')
+    clients = models.ManyToManyField(Client, related_name='newsletters')
 
     def get_frequency_display(self):
-        return dict(self.FREQUENCY_CHOICES).get(self.frequency, '')
+        for frequency, display_name in self.FREQUENCY_CHOICES:
+            if frequency == self.frequency:
+                return display_name
+        return None
 
     def __str__(self):
         return f"Рассылка ({self.get_frequency_display()})"

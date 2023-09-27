@@ -18,3 +18,9 @@ class MessageForm(forms.ModelForm):
     class Meta:
         model = Message
         fields = ['newsletter', 'subject', 'body']
+
+
+class MessageForm(forms.ModelForm):
+    class Meta:
+        model = Message
+        fields = ['subject', 'body']
